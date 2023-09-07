@@ -31,15 +31,15 @@ namespace DataTypeConversion
             // explicit casting
             byteNum = (byte)shortInt;
 
-            try
-            {
-                byteNum = checked((byte)shortInt);
-                byteNum = Convert.ToByte(shortInt);
-            }
-            catch
-            {
-                //ouput message that data will be lost
-            }
+            int num1 = 2;
+            int num2 = 4;
+            uint num3 = 5;
+
+            num1 = num1 * num3;
+            num2 = num1 / num2;
+            num3 = num3 % num2;
+
+            Console.Write(num1);
         }
     }
 }

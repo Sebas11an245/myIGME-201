@@ -10,15 +10,17 @@ namespace Practice
     {
         static void Main(string[] args)
         {
-            int num1 = 2;
-            int num2 = 4;
-            int num3 = 5;
 
-            num1 = num1 * num3;
-            num2 = num1 / num2;
-            num3 = num3 % num2;
+            int i;
+            for (i = 1; i <= 10; i++)
+            {
+                if ((i % 2) = 0)
+                {
+                    continue;
+                }
 
-            Console.Out.WriteLine("50 plus 25 is " + 50 + 25);
+                Console.WriteLine(i);
+            }
 
 
         }

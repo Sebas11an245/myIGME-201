@@ -72,6 +72,7 @@ namespace PE_6
             {
                 Console.WriteLine($"You ran out of turns. The number was {randomNumber}.");
             }
+
             Console.ReadLine();
         }
         

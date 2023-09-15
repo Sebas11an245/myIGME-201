@@ -29,11 +29,9 @@ namespace PE_6
             // print the random number first
             Console.WriteLine(randomNumber);
 
-
             while (guesses < 8)
             {
                 Console.WriteLine($"Turn #{guesses+1}: Enter a guess: ");
-
 
                 if (int.TryParse(Console.ReadLine(), out guess))
                 {

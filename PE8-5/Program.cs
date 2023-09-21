@@ -28,7 +28,7 @@ namespace PE8_5
             // Create a 3-dimensional array to store x, y, and z values
             double[,,] values = new double[xRange, yRange, 3];
 
-            // Calculate and store the values of x, y, and z
+            // Calculate and store the values into the array
             for (int i = 0; i < xRange; i++)
             {
                 for (int j = 0; j < yRange; j++)

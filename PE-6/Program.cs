@@ -8,10 +8,15 @@ namespace PE_6
 {
     /*
      * Author: Sebastian Arroyo
-     * This class generates a random number and gives the person playing 8 tries to guess it
+     * Purpose: Parsing and Formatting
+     * Restrictions: None
      */
-    internal class Program
+    internal static class Program
     {
+        /* Method: Main
+        * Purpose: Generate a random number and give the person playing 8 tries to guess it
+        * Restrictions: None
+        */
         static void Main(string[] args)
         {
             // initialize guess
@@ -26,8 +31,7 @@ namespace PE_6
             // generate a random number between 0 inclusive and 101 exclusive
             int randomNumber = rand.Next(0, 101);
 
-            // print the random number first
-            Console.WriteLine(randomNumber);
+            Console.WriteLine("You have 8 tries to guess a number 0-100.");
 
             while (guesses < 8)
             {

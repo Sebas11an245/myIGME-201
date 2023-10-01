@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 namespace MathRoundImpersonation
 {
     delegate double RoundDelegate(double value, int decimals);
+    //Class Program
+    //Author: Sebastian Arroyo
+    //Purpose: Delegate
+    //Restrictions: None
     internal static class Program
     {
+        //Method Main
+        //Purpose: Impersonate Math.Round in different ways
+        //Restrictions: None
         static void Main(string[] args)
         {
             // Using a delegate to impersonate Math.Round(double, int)

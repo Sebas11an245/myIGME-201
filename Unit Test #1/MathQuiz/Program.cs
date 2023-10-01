@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace MathQuiz
 {
+    /*Class Program
+     *Author: Sebastian Arroyo
+     *Purpose: Math
+     *Restrictions: None
+     */
     internal static class Program
     {
+        /*Method Main
+        *Purpose: Math Quiz Game
+        *Restrictions: None
+        */
         static void Main(string[] args)
         {
             // store user name

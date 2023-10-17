@@ -222,7 +222,7 @@ namespace PetApp
 
                     if (thisPet.GetType() == typeof(Dog))
                     {
-                        iDog = (IDog)thisPet;
+                        iDog = (Dog)thisPet;
 
                         int number = rand.Next(0, 5);
 
@@ -247,7 +247,7 @@ namespace PetApp
                     }
                     else
                     {
-                        iCat = (ICat)thisPet;
+                        iCat = (Cat)thisPet;
 
                         int number = rand.Next(0, 5);
 

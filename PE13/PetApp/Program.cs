@@ -1,31 +1,126 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetApp
 {
-    public abstract class Pet 
+    interface ICat
+    {
+        void Eat();
+        void Play();
+        void Scratch();
+        void Purr();
+    }
+
+    interface IDog
+    {
+        void Eat();
+        void Play();
+        void Bark();
+        void NeedWalk();
+        void GotoVet();
+    }
+
+    public abstract class Pet
     {
         private string name;
         public int age;
 
-        public string Name;
-        public abstract void Eat();
-        public abstract void Play();
-        public abstract void GoToVet();
-        public Pet() 
+        public string Name
         {
+            get
+            {
+                return this.name;
+            }
 
+            set
+            {
+                this.name = value;
+            }
         }
+
+        public Pet()
+        {
+        }
+
         public Pet(string name, int age)
         {
             this.name = name;
             this.age = age;
         }
 
+        public abstract void Eat();
+        public abstract void Play();
+        public abstract void GotoVet();
     }
+
+    public class Cat : Pet, ICat
+    {
+        public Cat()
+        {
+
+        }
+
+        public override void Eat()
+        {
+            Console.WriteLine($"{Name}: Yuck, I don't like that!");
+        }
+
+        public override void Play()
+        {
+            Console.WriteLine($"{Name}: Where's that mouse...");
+        }
+
+        public void Purr()
+        {
+            Console.WriteLine($"{Name}: purrrrrrrrrrrrrrrrrrrr...");
+        }
+
+        public void Scratch()
+        {
+            Console.WriteLine($"{Name}: Hiss!");
+        }
+
+        public override void GotoVet()
+        {
+            Console.WriteLine($"{Name}: Ha! I never do this");
+        }
+    }
+
+    public class Dog : Pet, IDog
+    {
+        public string license;
+
+        public Dog(string szLicense, string szName, int nAge) : base(szName, nAge)
+        {
+            this.license = szLicense;
+        }
+
+        public override void Eat()
+        {
+            Console.WriteLine($"{Name}: Yummy, I will eat anything!");
+        }
+
+        public override void Play()
+        {
+            Console.WriteLine($"{Name}: Throw the ball, throw the ball!");
+        }
+
+        public void Bark()
+        {
+            Console.WriteLine($"{Name}: Woof woof!");
+        }
+
+        public void NeedWalk()
+        {
+            Console.WriteLine($"{Name}: Woof woof, I need to go out.");
+        }
+
+        public override void GotoVet()
+        {
+            Console.WriteLine($"{Name}: Whimper, whimper, no vet!");
+        }
+    }
+
     public class Pets
     {
         public List<Pet> petList = new List<Pet>();
@@ -63,207 +158,148 @@ namespace PetApp
             }
         }
 
-        public int Count 
+        public int Count
         {
             get
             {
                 return petList.Count;
             }
-        
         }
+
         public void Add(Pet pet)
         {
-            petList.Add(pet);
+            if (pet != null)
+            {
+                petList.Add(pet);
+            }
         }
+
         public void Remove(Pet pet)
         {
-            petList.Remove(pet);
+            if (pet != null)
+            {
+                petList.Remove(pet);
+            }
         }
+
         public void RemoveAt(int petEl)
         {
             petList.RemoveAt(petEl);
         }
     }
-    public class Cat : Pet, ICat
+
+    public class PetApp
     {
-        public override void Eat()
-        {
-            Console.WriteLine($"{Name} is munching.");
-        }
-        public override void Play()
-        {
-            Console.WriteLine($"{Name}'s playtime.");
-
-        }
-        public void Purr()
-        {
-            Console.WriteLine($"{Name} purrs.");
-
-        }
-        public void Scratch()
-        {
-            Console.WriteLine($"{Name} attacks.");
-
-        }
-        public override void GoToVet()
-        {
-            Console.WriteLine($"{Name} is sick.");
-
-        }
-        public Cat()
-        {
-           
-        }
-
-    }
-    public interface ICat
-    {
-        void Eat();
-        void Play();
-        void Scratch();
-        void Purr();
-    }
-    public class Dog : Pet, IDog
-    {
-        public string license;
-
-        public override void Eat()
-        {
-            Console.WriteLine($"{Name} is munching.");
-
-        }
-        public override void Play()
-        {
-            Console.WriteLine($"{Name} loves to play.");
-
-        }
-        public void Bark()
-        {
-            Console.WriteLine($"{Name} barks.");
-
-        }
-        public void NeedToWalk()
-        {
-            Console.WriteLine($"{Name} wants to go outside.");
-
-        }
-        public override void GoToVet()
-        {
-            Console.WriteLine($"{Name} is sick.");
-
-        }
-        public Dog(string szLicense, string szName, int nAge) : base(szName, nAge)
-        {
-            this.license = szLicense;
-        }
-    }
-    public interface IDog
-    {
-        void Eat();
-        void Play();
-        void Bark();
-        void NeedToWalk();
-        void GoToVet();
-    }
-
-    internal class Program
-    {
-        
         static void Main(string[] args)
         {
+            int i = 0;
+            int petEl = 0;
             Pet thisPet = null;
+
             Dog dog = null;
             Cat cat = null;
             IDog iDog = null;
             ICat iCat = null;
 
-            Pets pets = new Pets();
-
+            // seed the random number generator
             Random rand = new Random();
 
-            for (int i = 1; i <= 50; i++)
+            Pets pets = new Pets();
+
+            for (i = 0; i < 50; ++i)
             {
+
                 // 1 in 10 chance of adding an animal
                 if (rand.Next(1, 11) == 1)
                 {
-                    if (rand.Next(0, 2) == 0)
+                    Console.WriteLine();
+                    if (rand.Next(1, 3) == 1)
                     {
-                        Console.WriteLine("You bought a dog!");
-                        Console.Write("License => ");
-                        string license = Console.ReadLine();
-                        Console.Write("Name => ");
-                        string name = Console.ReadLine();
+                        // add a cat
+                        cat = new Cat();
+                        Console.WriteLine("You bought a cat!");
+                        Console.Write("Cat's Name => ");
+                        cat.Name = Console.ReadLine();
                         Console.Write("Age => ");
-                        int age = int.Parse(Console.ReadLine());
-                        dog = new Dog(license, name, age);
-                        pets.Add(dog);
+                        cat.age = Convert.ToInt32(Console.ReadLine());
+
+                        thisPet = cat;
                     }
                     else
                     {
-                        Console.WriteLine("You bought a cat!");
-                        cat = new Cat();
-                        Console.Write("Name => ");
-                        cat.Name = Console.ReadLine();
+                        // add a dog
+                        string szLicense;
+                        string szName;
+                        int nAge;
+
+                        Console.WriteLine("You bought a dog!");
+                        Console.Write("Dog's Name => ");
+                        szName = Console.ReadLine();
                         Console.Write("Age => ");
-                        cat.age = int.Parse(Console.ReadLine());
-                        pets.Add(cat);
+                        nAge = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("License => ");
+                        szLicense = Console.ReadLine();
+
+                        dog = new Dog(szLicense, szName, nAge);
+
+                        thisPet = dog;
                     }
+
+                    pets.Add(thisPet);
                 }
                 else
                 {
-                    try 
-                    { 
-                        thisPet = pets[rand.Next(0, pets.Count-1)];
-                    }
-                    catch 
+                    petEl = rand.Next(0, pets.Count);
+
+                    thisPet = pets[petEl];
+
+                    if (thisPet == null)
                     {
                         continue;
                     }
 
-                    if (thisPet.GetType() == typeof(Dog))
+                    if (thisPet.GetType() == typeof(Cat))
                     {
-                        iDog = (Dog)thisPet;
+                        iCat = (ICat)thisPet;
 
-                        int number = rand.Next(0, 5);
-
-                        switch (number)
+                        int nAction = rand.Next(0, 4);
+                        switch (nAction)
                         {
+                            case 0:
+                                iCat.Eat();
+                                break;
                             case 1:
-                                iDog.GoToVet();
-                                break;
-                            case 2:
-                                iDog.Bark();
-                                break;
-                            case 3:
-                                iDog.Eat();
-                                break;
-                            case 4:
-                                iDog.Play();
-                                break;
-                            default:
-                                iDog.NeedToWalk();
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        iCat = (Cat)thisPet;
-
-                        int number = rand.Next(0, 5);
-
-                        switch (number)
-                        {
-                            case 1:
-                                iCat.Scratch();
+                                iCat.Play();
                                 break;
                             case 2:
                                 iCat.Purr();
                                 break;
                             case 3:
-                                iCat.Eat();
+                                iCat.Scratch();
                                 break;
-                            default:
-                                iCat.Play();
+                        }
+                    }
+                    else
+                    {
+                        iDog = (IDog)thisPet;
+                        int nAction = rand.Next(0, 5);
+
+                        switch (nAction)
+                        {
+                            case 0:
+                                iDog.Eat();
+                                break;
+                            case 1:
+                                iDog.Play();
+                                break;
+                            case 2:
+                                iDog.Bark();
+                                break;
+                            case 3:
+                                iDog.NeedWalk();
+                                break;
+                            case 4:
+                                iDog.GotoVet();
                                 break;
                         }
                     }

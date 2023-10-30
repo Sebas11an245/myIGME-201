@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace StructToClass
 {
+    //Class: Friend
+    //Author: Sebastian Arroyo
+    //Purpose: Friend Struct
+    //Restrictions: None
     public class Friend
     {
         public string name;
@@ -13,9 +17,15 @@ namespace StructToClass
         public DateTime birthdate;
         public string address;
     }
-
+    //Class: Program
+    //Author: Sebastian Arroyo
+    //Purpose: Main
+    //Restrictions: None
     class Program
     {
+        //Method: Main
+        //Purpose: Create friend Charlie Sheen and make them my enemy
+        //Restrictions: None
         static void Main(string[] args)
         {
             Friend friend = new Friend();

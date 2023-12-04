@@ -1,0 +1,131 @@
+// Constants
+string imgLink = "https://people.rit.edu/dxsigm/";
+string webLink = "https://en.wikipedia.org/wiki/";
+
+// Lists
+List<RadioButton> presidentButtonList;
+List<RadioButton> filterButtonList;
+List<TextBox> textBoxList;
+
+// ErrorProvider
+ErrorProvider errorProvider;
+
+// Form Initialization
+InitializeComponent();
+CreateLists();
+ConfigureRegistrySettings();
+SetInitialValues();
+WireEventHandlers();
+
+// Event Handlers
+void Timer__Tick(sender, e):
+    DecrementProgressBar();
+    if (ProgressBarIsZero()):
+        StopTimer();
+        ResetProgressBar();
+        ResetTextBoxValues();
+
+void PresidentButtonList__CheckedChanged(sender, e):
+    UpdatePresidentDetails();
+
+void FilterButtonList__CheckedChanged(sender, e):
+    ApplyFilter();
+
+void WebBrowser1__DocumentCompleted(sender, e):
+    AttachMouseOverAndMouseLeaveEvents();
+
+void TextBox_KeyPress(sender, e):
+    AllowDigitInputOnly();
+
+void TextBox_TextChanged(sender, e):
+    StartTimer();
+    ValidateTextBoxValue();
+    ValidateAll();
+
+void PictureBox__MouseOver(sender, e):
+    IncreasePictureBoxSize();
+
+void PictureBox__MouseLeave(sender, e):
+    DecreasePictureBoxSize();
+
+void TextBox__MouseOver(sender, e):
+    ShowToolTip();
+
+void webLink__MouseOver(sender, e):
+    ShowToolTipWithText();
+
+void webLink__MouseLeave(sender, e):
+    HideToolTip();
+
+void ExitButton__Click(sender, e):
+    CloseForm();
+
+// Helper Functions
+InitializeComponent():
+    // Initialize form components and controls
+
+CreateLists():
+    // Initialize lists for buttons, textboxes, and error provider
+
+ConfigureRegistrySettings():
+    // Configure registry settings for Internet Explorer compatibility
+
+SetInitialValues():
+    // Set initial values for various controls and components
+
+WireEventHandlers():
+    // Attach event handlers for buttons, textboxes, web browser, etc.
+
+DecrementProgressBar():
+    // Decrease the value of the progress bar
+
+ProgressBarIsZero():
+    // Check if the progress bar value is zero
+
+StopTimer():
+    // Stop the timer
+
+ResetProgressBar():
+    // Reset the progress bar value
+
+ResetTextBoxValues():
+    // Reset the values of all textboxes to "0"
+
+UpdatePresidentDetails():
+    // Update president details based on the selected radio button
+
+ApplyFilter():
+    // Apply filter based on the selected filter radio button
+
+AttachMouseOverAndMouseLeaveEvents():
+    // Attach mouseover and mouseleave events to HTML elements in the web browser
+
+AllowDigitInputOnly():
+    // Allow only digit input in textboxes
+
+StartTimer():
+    // Start the timer
+
+ValidateTextBoxValue():
+    // Validate the value of a single textbox
+
+ValidateAll():
+    // Validate the values of all textboxes
+
+IncreasePictureBoxSize():
+    // Increase the size of the picture box
+
+DecreasePictureBoxSize():
+    // Decrease the size of the picture box
+
+ShowToolTip():
+    // Show tooltip for textboxes
+
+ShowToolTipWithText():
+    // Show tooltip with specific text for HTML elements
+
+HideToolTip():
+    // Hide tooltip
+
+CloseForm():
+    // Close and dispose the form

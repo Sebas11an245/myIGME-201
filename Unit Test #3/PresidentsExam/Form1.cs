@@ -12,16 +12,18 @@ namespace PresidentsExam
 {
     public partial class Form1 : Form
     {
-        private string selectedPresident;
-        private List<RadioButton> presidentRadioButtons;
-        private TextBox presidentNumberTextBox;
-        private GroupBox browserGroupBox;
-        private Timer timer;
+        string imgLink = "https://people.rit.edu/dxsigm/";
+        string webLink = "https://en.wikipedia.org/wiki/";
 
+        List<RadioButton> presidentRadioButtons = new List<RadioButton>();
+        List<TextBox> presidentTextBox = new List<TextBox>();
+
+        ErrorProvider errorProvider = new ErrorProvider();
 
         public Form1()
         {
             InitializeComponent();
+            CreateLists();
             try
             {
                 // Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; WOW64; Trident / 7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; wbx 1.0.0)
@@ -33,11 +35,16 @@ namespace PresidentsExam
             catch
             {
             }
+            
+            //set initial state
+            this.presidentPictureBox.ImageLocation = "https://people.rit.edu/dxsigm/BenjaminHarrison.jpeg";
+            
+            exitButton.Enabled = false;
+            this.allRadioButton.Checked = true;
+            this.timerProgressBar.Minimum = 0;
+            this.timerProgressBar.Maximum = 100;
+            this.timerProgressBar.Value = 100;
 
-            presidentRadioButtons = new List<RadioButton>();
-            presidentNumberTextBox = new TextBox();
-            timer = new Timer();
-            selectedPresident = "";
 
 
             // Set up event handlers
@@ -52,15 +59,12 @@ namespace PresidentsExam
             this.presidentPictureBox.LoadCompleted += PresidentPhotoPictureBox__LoadCompleted;
 
 
-            //set initial state
             presidentPictureBox.Enabled = true;
             presidentPictureBox.Visible = true;
-            exitButton.Enabled = false;
+            
             timer.Interval = 1000; // 1 second
             timer.Start();
-            timerProgressBar.Minimum = 0;
-            timerProgressBar.Maximum = 100;
-            timerProgressBar.Value = 100;
+            
             wikiWebBrowser.Dock = DockStyle.Fill;
 
         }

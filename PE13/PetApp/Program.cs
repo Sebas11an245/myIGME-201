@@ -243,6 +243,7 @@ namespace PetApp
             myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat);
             myTimer.Start();
 
+            // Timer for evicting a dog every 20 seconds
             Timer myTimer2 = new Timer(20000);
             myTimer2.Elapsed += new ElapsedEventHandler(Cat.EvictDog);
             myTimer2.Start();

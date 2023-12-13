@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace PetApp
 {
@@ -55,6 +56,7 @@ namespace PetApp
 
     public class Cat : Pet, ICat
     {
+
         public Cat()
         {
 
@@ -83,6 +85,22 @@ namespace PetApp
         public override void GotoVet()
         {
             Console.WriteLine($"{Name}: Ha! I never do this");
+
+        }
+        public static void EvictDog(object sender, ElapsedEventArgs e)
+        {
+
+            if (PetApp.pets.Count > 0 && PetApp.pets[0] is Dog)
+            {
+                Dog evictedDog = (Dog)PetApp.pets[0];
+                PetApp.pets.RemoveAt(0);
+                Console.WriteLine($"{evictedDog.Name}: AAAAAAAAAAAAAAAAAAAAAAH! Help me, I don't like the cold!");
+                evictedDog.Evicted(evictedDog.Name);
+            }
+        }
+        public void Evicted(string name)
+        {
+            Console.WriteLine($"\n{Name}: You will be a homeless furball, {name}");
         }
     }
 
@@ -118,6 +136,20 @@ namespace PetApp
         public override void GotoVet()
         {
             Console.WriteLine($"{Name}: Whimper, whimper, no vet!");
+        }
+        public static void EvictCat(object sender, ElapsedEventArgs e)
+        {
+            if (PetApp.pets.Count > 0 && PetApp.pets[0] is Cat)
+            {
+                Cat evictedCat = (Cat)PetApp.pets[0];
+                PetApp.pets.RemoveAt(0);
+                Console.WriteLine($"{evictedCat.Name}: AAAAAAAAAAAAAAAAAAAAAAH! Help me, I don't like the cold!");
+                evictedCat.Evicted(evictedCat.Name);
+            }
+        }
+        public void Evicted(string name)
+        {
+            Console.WriteLine($"\n{Name}: You will be a homeless furball, {name}");
         }
     }
 
@@ -190,6 +222,8 @@ namespace PetApp
 
     public class PetApp
     {
+        static public Pets pets = new Pets();
+
         static void Main(string[] args)
         {
             int i = 0;
@@ -204,7 +238,14 @@ namespace PetApp
             // seed the random number generator
             Random rand = new Random();
 
-            Pets pets = new Pets();
+            // Timer for evicting a cat every 20 seconds
+            Timer myTimer = new Timer(20000);
+            myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat);
+            myTimer.Start();
+
+            Timer myTimer2 = new Timer(20000);
+            myTimer2.Elapsed += new ElapsedEventHandler(Cat.EvictDog);
+            myTimer2.Start();
 
             for (i = 0; i < 50; ++i)
             {

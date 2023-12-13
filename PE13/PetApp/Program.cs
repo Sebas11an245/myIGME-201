@@ -238,12 +238,11 @@ namespace PetApp
             // seed the random number generator
             Random rand = new Random();
 
-            // Timer for evicting a cat every 20 seconds
+            // Timers for evicting animals
             Timer myTimer = new Timer(20000);
             myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat);
             myTimer.Start();
 
-            // Timer for evicting a dog every 20 seconds
             Timer myTimer2 = new Timer(20000);
             myTimer2.Elapsed += new ElapsedEventHandler(Cat.EvictDog);
             myTimer2.Start();

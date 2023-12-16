@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Question3
 {
+    //Author: Sebastian Arroyo
+    //Purpose: Digraph to AdjanceyMatrix/List
+    //Restrictions: None
     class Graph
     {
         private int[,] adjacencyMatrix;
         private List<List<int>> adjacencyList;
 
+        // Purpose: Constructor
+        // Restrictions: None
         public Graph(int vertices)
         {
             adjacencyMatrix = new int[vertices, vertices];
@@ -22,12 +27,16 @@ namespace Question3
             }
         }
 
+        // Purpose: Create edge between vertices
+        // Restrictions: None
         public void AddEdge(int from, int to)
         {
             adjacencyMatrix[from, to] = 1;
             adjacencyList[from].Add(to);
         }
 
+        // Purpose: Display Adjacency Matrix
+        // Restrictions: None
         public void DisplayAdjacencyMatrix()
         {
             Console.WriteLine("Adjacency Matrix:");
@@ -41,6 +50,8 @@ namespace Question3
             }
         }
 
+        // Purpose: Display Adjacency List
+        // Restrictions: None
         public void DisplayAdjacencyList()
         {
             Console.WriteLine("Adjacency List:");
@@ -55,8 +66,13 @@ namespace Question3
             }
         }
     }
+    //Author: Sebastian Arroyo
+    //Purpose: Program
+    //Restrictions: None
     internal class Program
     {
+        //Purpose: Recreate digraph
+        //Restrictions: None
         static void Main(string[] args)
         {
             // Create a graph with 8 vertices
